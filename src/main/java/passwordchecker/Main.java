@@ -41,6 +41,11 @@ public class Main {
         System.out.println("Secure password generator\n");
         System.out.println("(1) Generate password");
         System.out.println("(2) Back to main menu");
+        String choice = scanner.nextLine();
+
+        if (choice == "2") {
+            mainMenu();
+        }
     }
 
 
