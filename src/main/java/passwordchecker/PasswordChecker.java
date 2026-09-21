@@ -5,7 +5,7 @@ public class PasswordChecker {
     method to check minimum length --
     method to check for at least one uppercase letter --
     method to check for at least one lowercase letter --
-    method to check for at least one digit
+    method to check for at least one digit --
     method to check for at least one special character
     **/
 
@@ -35,5 +35,10 @@ public class PasswordChecker {
         }
         return hasLowerCase;
     }
+
+    public static boolean checkForOneDigit(String password) {
+        return password.matches(".*\\d.*");
+    }
+
 
 }
