@@ -1,5 +1,7 @@
 package passwordchecker;
 
+import java.util.regex.Pattern;
+
 public class PasswordChecker {
     /**
     method to check minimum length --
@@ -38,6 +40,10 @@ public class PasswordChecker {
 
     public static boolean checkForOneDigit(String password) {
         return password.matches(".*\\d.*");
+    }
+
+    public static boolean checkForSpecialCharacter(String password) {
+        return Pattern.compile("[^a-zA-Z0-9]").matcher(password).find();
     }
 
 

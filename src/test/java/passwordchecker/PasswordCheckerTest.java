@@ -35,4 +35,15 @@ class PasswordCheckerTest {
         boolean passedResult = PasswordChecker.checkForOneDigit(passedPw);
         assertTrue(passedResult);
     }
+
+    @org.junit.jupiter.api.Test
+    void checkForSpecialCharacter() {
+        String failedPw = "abc";
+        boolean failedResult = PasswordChecker.checkForSpecialCharacter(failedPw);
+        assertFalse(failedResult);
+
+        String passedPw = "abc@";
+        boolean passedResult = PasswordChecker.checkForSpecialCharacter(passedPw);
+        assertTrue(passedResult);
+    }
 }
