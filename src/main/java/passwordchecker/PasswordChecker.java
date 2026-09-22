@@ -3,17 +3,8 @@ package passwordchecker;
 import java.util.regex.Pattern;
 
 public class PasswordChecker {
-    /**
-    method to check minimum length --
-    method to check for at least one uppercase letter --
-    method to check for at least one lowercase letter --
-    method to check for at least one digit --
-    method to check for at least one special character
-    **/
 
-   // public static void checkStrength(String password){}
-
-
+    public static void totalStrength(String password) {}
 
     public static boolean checkLength(String password) {
         if (password.length() < 10) {
@@ -43,7 +34,7 @@ public class PasswordChecker {
     }
 
     public static boolean checkForSpecialCharacter(String password) {
-        return Pattern.compile("[^a-zA-Z0-9]").matcher(password).find();
+        return Pattern.compile("[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>/?]").matcher(password).find();
     }
 
 

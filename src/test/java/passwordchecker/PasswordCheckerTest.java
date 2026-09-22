@@ -19,10 +19,24 @@ class PasswordCheckerTest {
 
     @org.junit.jupiter.api.Test
     void checkUpperCase() {
+        String failedPw = "abc";
+        boolean failedResult = PasswordChecker.checkUpperCase(failedPw);
+        assertFalse(failedResult);
+
+        String passedPw = "Abcdefghij";
+        boolean passedResult = PasswordChecker.checkUpperCase(passedPw);
+        assertTrue(passedResult);
     }
 
     @org.junit.jupiter.api.Test
     void checkLowerCase() {
+        String failedPw = "ABC";
+        boolean failedResult = PasswordChecker.checkLowerCase(failedPw);
+        assertFalse(failedResult);
+
+        String passedPw = "ABCDEFGHIJk";
+        boolean passedResult = PasswordChecker.checkLowerCase(passedPw);
+        assertTrue(passedResult);
     }
 
     @org.junit.jupiter.api.Test
