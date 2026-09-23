@@ -1,16 +1,38 @@
 package passwordchecker;
 
+import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
 import java.util.regex.Pattern;
 
 public class PasswordChecker {
 
-    public static void totalStrength(String password) {}
+    static final int LENGTH_POINTS = 2;
+    static final int UPPER_POINTS = 2;
+    static final int LOWER_POINTS = 2;
+    static final int DIGIT_POINTS = 2;
+    static final int CHARACTER_POINTS = 2;
+
+    private static final List<Map.Entry<Function<String, Boolean>, Integer>> CRITERIA = List.of(
+            Map.entry(PasswordChecker::checkLength, LENGTH_POINTS),
+            Map.entry(PasswordChecker::checkUpperCase, UPPER_POINTS),
+            Map.entry(PasswordChecker::checkLowerCase, LOWER_POINTS),
+            Map.entry(PasswordChecker::checkDigit, DIGIT_POINTS),
+            Map.entry(PasswordChecker::checkSpecialCharacter, CHARACTER_POINTS)
+    );
+
+    public static int totalStrength(String password) {
+        int score = 0;
+        for (var entry : CRITERIA) {
+            if (entry.getKey().apply(password)) {
+                score += entry.getValue();
+            }
+        }
+        return score;
+    }
 
     public static boolean checkLength(String password) {
-        if (password.length() < 10) {
-            return false;
-        }
-        return true;
+        return password.length() >= 10;
     }
 
     public static boolean checkUpperCase(String password) {
@@ -29,11 +51,11 @@ public class PasswordChecker {
         return hasLowerCase;
     }
 
-    public static boolean checkForOneDigit(String password) {
+    public static boolean checkDigit(String password) {
         return password.matches(".*\\d.*");
     }
 
-    public static boolean checkForSpecialCharacter(String password) {
+    public static boolean checkSpecialCharacter(String password) {
         return Pattern.compile("[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>/?]").matcher(password).find();
     }
 

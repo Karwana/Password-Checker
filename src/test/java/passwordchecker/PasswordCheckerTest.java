@@ -42,22 +42,22 @@ class PasswordCheckerTest {
     @org.junit.jupiter.api.Test
     void checkForOneDigit() {
         String failedPw = "abc";
-        boolean failedResult = PasswordChecker.checkForOneDigit(failedPw);
+        boolean failedResult = PasswordChecker.checkDigit(failedPw);
         assertFalse(failedResult);
 
         String passedPw = "abcdefghij1";
-        boolean passedResult = PasswordChecker.checkForOneDigit(passedPw);
+        boolean passedResult = PasswordChecker.checkDigit(passedPw);
         assertTrue(passedResult);
     }
 
     @org.junit.jupiter.api.Test
     void checkForSpecialCharacter() {
         String failedPw = "abc";
-        boolean failedResult = PasswordChecker.checkForSpecialCharacter(failedPw);
+        boolean failedResult = PasswordChecker.checkSpecialCharacter(failedPw);
         assertFalse(failedResult);
 
         String passedPw = "abc@";
-        boolean passedResult = PasswordChecker.checkForSpecialCharacter(passedPw);
+        boolean passedResult = PasswordChecker.checkSpecialCharacter(passedPw);
         assertTrue(passedResult);
     }
 }
