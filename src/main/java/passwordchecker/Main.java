@@ -22,19 +22,15 @@ public class Main {
                 case "1" -> passwordStrengthMenu();
                 case "2" -> generatePasswordMenu();
                 case "3" -> running = false;
-
-
             }
-
-
         }
-
-
     }
 
     public static void passwordStrengthMenu() {
         System.out.println("Please enter password to see strength: ");
         String password = scanner.nextLine();
+        System.out.println("Total password score: " + PasswordChecker.totalStrength(password));
+        System.out.println("Things to improve: " + PasswordChecker.getImprovementTips(password));
     }
 
     public static void generatePasswordMenu() {
