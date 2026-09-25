@@ -1,5 +1,6 @@
 package passwordchecker;
 
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +19,7 @@ public class PasswordChecker {
     static final String lowerTip = "Use lowercase letters";
     static final String digitTip = "Use digits";
     static final String characterTip = "Use special characters";
+    static final String pool = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+-=[]{};:\"<>/?";
 
     private static final List<Map.Entry<Function<String, Boolean>, Integer>> CRITERIA = List.of(
             Map.entry(PasswordChecker::checkLength, LENGTH_POINTS),
@@ -43,6 +45,22 @@ public class PasswordChecker {
             }
         }
         return tips;
+    }
+
+    public static String generateStrongPassword() {
+        SecureRandom random = new SecureRandom();
+        while (true) {
+            StringBuilder builder = new StringBuilder();
+            for (int i = 0; i < 10; i++) {
+                int index = random.nextInt(pool.length());
+                char c = pool.charAt(index);
+                builder.append(c);
+            }
+            String result = builder.toString();
+            if (totalStrength(result) == 10) {
+                return result;
+            }
+        }
     }
 
     public static int totalStrength(String password) {
