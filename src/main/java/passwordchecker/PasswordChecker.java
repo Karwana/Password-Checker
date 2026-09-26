@@ -74,7 +74,7 @@ public class PasswordChecker {
     }
 
     public static boolean checkLength(String password) {
-        return password.length() >= 10;
+        return password.replaceAll("\\s", "").length() >= 10;
     }
 
     public static boolean checkUpperCase(String password) {
